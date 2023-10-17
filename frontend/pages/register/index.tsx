@@ -36,31 +36,33 @@ const Register = () => {
 
   const handleChange = (event:any) => {
     event.preventDefault();
-    setValues({ ...values, [event.target.name]: event.target.value });
+    setValues({ ...values, [event.target.name]: event.target.value });    
   }
 
   const handleValidation = () => {
     let isValid = true;
-    const {username, email,  password, confirmPassword} = values;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const {username, email, password, confirmPassword} = values;
+    console.log(values);
+    
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if(!username || !email || !password || !confirmPassword){ 
       toast.error('Enter required data', toastOptions);
       return false;
-    }
-    else if( username.length < 4){
-      toast.error('Username must be at least 4 characters long ', toastOptions);
-      isValid =  false;
+    }else if( username.length < 4){
+      toast.error('Username must be at least 4 characters long', toastOptions);
+      isValid = false;
     }
     if(!emailRegex.test(email)) {
       toast.error('Enter valid email', toastOptions);
       isValid = false;
     }
+    
     if(password.length < 3){
       toast.error('Choose a strong password', toastOptions);
-      isValid = false;
-    }else if(password !== confirmPassword){
-      toast.error("Password and confirm Password should be same", toastOptions);
+      return false;
+    } else if(password !== confirmPassword){
+      toast.error("Password and confirm Password must be same", toastOptions);
       isValid = false;
     } 
     // if (isValid) toast.success('Succesfully logging in!');
@@ -71,23 +73,20 @@ const Register = () => {
       e.preventDefault();
       if(handleValidation()){
         console.log("in validation", registerRoute);
-        const {username, email,  password} = values;
+        const {username, email,  password, confirmPassword} = values;
         const {data} = await axios.post(registerRoute, 
           // method:'post',
           // data: 
-          {username, email, password},
+          {username, email, password, confirmPassword},
 
         );
         if (data.status === false) {
           toast.error(data.msg, toastOptions);
         }
         if (data.status === true) {
-          console.log('hello');
           localStorage.setItem(
             'user_data',
-            // process.env.IDENTIFICATION_KEY || "id_key",
             JSON.stringify(data.user)
-            
           );
           Router.replace("/");
         }
@@ -108,7 +107,7 @@ const Register = () => {
           <input type='password' placeholder='Password' name='password' onChange={e=>handleChange(e)}/>
           <input type='password' placeholder='Confirm Password' name='confirmPassword' onChange={e=>handleChange(e)}/>
           <button type='submit'>Create User</button>
-          <span>Already have ann account? 
+          <span>Already have an account? 
             <Link href='/login'> Login </Link>
             </span>
           </form>

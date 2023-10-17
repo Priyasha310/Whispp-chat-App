@@ -1,25 +1,32 @@
-const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 const {StatusCodes} = require('http-status-codes');
-const jwt = require('jsonwebtoken');
+const { NotFoundError, BadRequestError } = require("../errors");
 require('dotenv').config();
 
 const register = async (req, res, next) => {
-    console.log(req.body);
-    // const user = await User.create({...req.body})    
-    const {username, email,  password, confirmPassword} = req.body; 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const user = await User.create({
-        username,
-        email,
-        password: hashedPassword,
-        confirmPassword: hashedPassword,
-      });
-    // const token = user.createJWT();
+    const {username, email,  password, confirmPassword} = req.body;
+
+    if(!username || !password){
+      throw new BadRequestError('Please provide required information')
+    }
+
+    const usernameCheck = await User.findOne({ username });
+    if (usernameCheck)
+      return res.json({ msg: "Username already taken", status: false });
+
+    const emailCheck = await User.findOne({ email });
+    if (emailCheck)
+      return res.json({ msg: "Email already used", status: false });
+
+    if(password!= confirmPassword)
+      return res.json({msg: "Password and Confirm Password must be same", status: false});
+
+    const user = await User.create({...req.body});
+
+    const token = user.createJWT();
     res
         .status(StatusCodes.CREATED)
-        .json({user:{ usernname:user.username, email: user.email }})
+        .json({status:true,  user, token})
 
 }
 
