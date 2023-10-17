@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 const {StatusCodes} = require('http-status-codes');
-const {UnauthenticatedError} = require('../errors');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const register = async (req, res, next) => {
     console.log(req.body);
@@ -15,7 +16,7 @@ const register = async (req, res, next) => {
         password: hashedPassword,
         confirmPassword: hashedPassword,
       });
-    const token = user.createJWT();
+    // const token = user.createJWT();
     res
         .status(StatusCodes.CREATED)
         .json({user:{ usernname:user.username, email: user.email }})
