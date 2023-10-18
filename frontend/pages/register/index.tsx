@@ -1,14 +1,12 @@
 "use client"
 import '../../app/globals.scss'
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
 import Link from 'next/link';
 import Image from 'next/image';
 import Router from 'next/router';
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { registerRoute } from "../../utils/APIRoutes";
-
+import { handleChange, handleSubmit } from '@/utils/registerForm';
 import logo from '../../public/logo.svg'
 import styles from './register.module.scss'
 
@@ -18,94 +16,24 @@ const Register = () => {
     username: '', email: '', password: '', confirmPassword: '',
   });
 
-  const toastOptions = {
-    position: toast.POSITION.BOTTOM_RIGHT,
-    autoClose: 5000,
-    pauseOnHover: true,
-    draggable: true,
-    // theme: 'dark',
-  };
-
   useEffect(() => {
-    if (localStorage.getItem('user_data'
-      // process.env.IDENTIFICATION_KEY || "id_key"
-      )) {
+    if (localStorage.getItem('user_data')) {
       Router.replace("/");
     }
   }, []);
 
-  const handleChange = (event:any) => {
-    event.preventDefault();
-    setValues({ ...values, [event.target.name]: event.target.value });    
-  }
-
-  const handleValidation = () => {
-    let isValid = true;
-    const {username, email, password, confirmPassword} = values;
-    console.log(values);
-    
-    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if(!username || !email || !password || !confirmPassword){ 
-      toast.error('Enter required data', toastOptions);
-      return false;
-    }else if( username.length < 4){
-      toast.error('Username must be at least 4 characters long', toastOptions);
-      isValid = false;
-    }
-    if(!emailRegex.test(email)) {
-      toast.error('Enter valid email', toastOptions);
-      isValid = false;
-    }
-    
-    if(password.length < 3){
-      toast.error('Choose a strong password', toastOptions);
-      return false;
-    } else if(password !== confirmPassword){
-      toast.error("Password and confirm Password must be same", toastOptions);
-      isValid = false;
-    } 
-    // if (isValid) toast.success('Succesfully logging in!');
-    return isValid;
-  }
-
-  const handleSubmit = async (e:any) => {
-      e.preventDefault();
-      if(handleValidation()){
-        console.log("in validation", registerRoute);
-        const {username, email,  password, confirmPassword} = values;
-        const {data} = await axios.post(registerRoute, 
-          // method:'post',
-          // data: 
-          {username, email, password, confirmPassword},
-
-        );
-        if (data.status === false) {
-          toast.error(data.msg, toastOptions);
-        }
-        if (data.status === true) {
-          localStorage.setItem(
-            'user_data',
-            JSON.stringify(data.user)
-          );
-          Router.replace("/");
-        }
-      
-      };
-  }
-
   return (
     <>
       <div className={styles.div}>
-        <form action="" onSubmit={(event) => handleSubmit(event)}>
+        <form action="" onSubmit={(event) => handleSubmit(event, values, setValues)}>
           <div className={styles.brand}>
             <Image src={logo} alt='Whispp' width={100} height={100}/>
             <h1>Whispp</h1>
           </div>
-          <input type='text' placeholder='Username' name='username' onChange={e=>handleChange(e)}/>
-          <input type='email' placeholder='Email' name='email' onChange={e=>handleChange(e)}/>
-          <input type='password' placeholder='Password' name='password' onChange={e=>handleChange(e)}/>
-          <input type='password' placeholder='Confirm Password' name='confirmPassword' onChange={e=>handleChange(e)}/>
+          <input type='text' placeholder='Username' name='username' onChange={e=>handleChange(e, values, setValues)}/>
+          <input type='email' placeholder='Email' name='email' onChange={e=>handleChange(e, values, setValues)}/>
+          <input type='password' placeholder='Password' name='password' onChange={e=>handleChange(e, values, setValues)}/>
+          <input type='password' placeholder='Confirm Password' name='confirmPassword' onChange={e=>handleChange(e, values, setValues)}/>
           <button type='submit'>Create User</button>
           <span>Already have an account? 
             <Link href='/login'> Login </Link>
