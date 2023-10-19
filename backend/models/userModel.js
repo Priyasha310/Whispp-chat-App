@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
         type:String, 
         // required: [true, 'Confirm Password must be provided']
     },
-    isAvatarImage: {
+    isAvatarImageSet: {
         type: Boolean, 
         default: false,
     },

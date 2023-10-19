@@ -1,0 +1,47 @@
+.avatarContainer{
+    @apply flex justify-center items-center flex-col;
+    @apply gap-12 h-screen w-screen;
+    background-color: #131324;
+
+    .loader {
+        max-inline-size: 100%;
+    }
+
+    .titleContainer {
+        h1 {
+            @apply text-white;
+        }
+    }
+    .avatars {
+        @apply flex gap-8 cursor-pointer;
+
+        .avatar {
+            border: 0.4rem solid;
+            padding: 0.4rem;
+            border-radius: 5rem;
+            @apply flex justify-center items-center;
+            transition: 0.5s ease-in-out;
+            img {
+                height: 6rem;
+                transition: 0.5s ease-in-out;
+            }
+        }
+        .selected {
+            border: 0.4rem solid #4e0eff;
+        }
+    }
+    .submitBtn {
+        @apply bg-btn-color text-white;
+        @apply px-4 py-4 rounded-md text-lg;
+        @apply border-none cursor-pointer uppercase;
+        @apply font-bold;
+        &:hover {
+            @apply bg-hover-btn-color;
+        }
+    }
+}
+
+.loadContainer{
+    @apply flex justify-center items-center flex-col;
+    @apply gap-12 bg-bg-color h-screen w-screen;
+}
