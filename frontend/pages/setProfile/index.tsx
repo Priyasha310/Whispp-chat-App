@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import styles from './setProfile.module.scss'
-import loader from "../../public/loader.gif";
+import loader from "@/public/loader.gif";
 import { setProfilePicture } from '@/utils/utlis';
 
 export default function SetAvatar() {
@@ -45,8 +45,8 @@ export default function SetAvatar() {
   return ( 
     <>
       {isLoading ? (
-        <div className={styles.loadContainer}>
-          <Image src={loader} alt="loader" className={styles.loader} width={100} height={100} />
+        <div className="loadContainer">
+          <Image src={loader} alt="loader" className="loader" width={100} height={100} />
         </div>
       ) : (
         <div className={styles.avatarContainer}>
@@ -77,7 +77,7 @@ export default function SetAvatar() {
           </button>
           <ToastContainer />
         </div>
-      )}
+      )} 
     </>
   );
 }

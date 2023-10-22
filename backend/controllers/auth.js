@@ -1,3 +1,4 @@
+const asyncWrapper = require('../middleware/async');
 const User = require('../models/userModel');
 const {StatusCodes} = require('http-status-codes');
 require('dotenv').config();
@@ -71,4 +72,9 @@ const setProfile = async (req, res, next) => {
     next(ex)
   }
 }
-module.exports = {register, login, setProfile}
+
+const getAllUsers = asyncWrapper( async(req, res, next)=>{
+    const Users = await User.find({});
+    res.status(200).json({Users})
+})
+module.exports = {register, login, setProfile, getAllUsers}

@@ -1,11 +1,12 @@
-import Chat from '@/pages/chat'
-import Register from '@/pages/register'
-import React from 'react'
+import Chat from "@/pages/chat"
 
-const Home = () => {
+const app = () => {
+
   return (
     "Home Page"
+    // <Chat/>
   )
 }
 
-export default Home
+export default app
+

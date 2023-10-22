@@ -64,7 +64,7 @@ export const handleSubmit = async (e:any, values:any, setValues:any) => {
         'user_data',
         JSON.stringify(data.user)
         );
-        Router.replace("/");
+        Router.replace("/setProfile");
     }
     
     };

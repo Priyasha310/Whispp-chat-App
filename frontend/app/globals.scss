@@ -10,7 +10,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 3px; height:3px;
   background-color: #F5F5F5;
 }
 
@@ -30,4 +30,15 @@ body{
   @apply h-full w-full;
   @apply bg-slate-200;
   @apply text-gray-900;
+}
+
+
+.loadContainer{
+  @apply flex justify-center items-center flex-col;
+  @apply gap-12 bg-bg-color h-screen w-screen;
+
+  
+  .loader {
+    max-inline-size: 100%;
+  }
 }
