@@ -1,5 +1,4 @@
-"use client"
-import '../../app/globals.scss'
+import '@/app/globals.scss'
 import React, {useState, useEffect} from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,11 +6,12 @@ import Router from 'next/router';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { handleChange, handleSubmit } from '@/utils/registerForm';
+import loader from "@/public/loader.gif";
 import logo from '../../public/logo.svg'
 import styles from './register.module.scss'
 
-const Register = () => {
-
+const Register = () => {  
+  const [isLoading, setIsLoading] = useState(true);
   const [values, setValues] = useState({
     username: '', email: '', password: '', confirmPassword: '',
   });
@@ -20,10 +20,16 @@ const Register = () => {
     if (localStorage.getItem('user_data')) {
       Router.replace("/");
     }
+    setIsLoading(false) 
   }, []);
 
   return (
     <>
+      {isLoading ? (
+        <div className="loadContainer">
+          <Image src={loader} alt="loader" className="loader" width={100} height={100} />
+        </div>
+      ) : (
       <div className={styles.div}>
         <form action="" onSubmit={(event) => handleSubmit(event, values, setValues)}>
           <div className={styles.brand}>
@@ -40,6 +46,7 @@ const Register = () => {
             </span>
           </form>
       </div>
+      )} 
       <ToastContainer />
     </>
   )

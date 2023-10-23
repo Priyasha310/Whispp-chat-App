@@ -74,7 +74,9 @@ const setProfile = async (req, res, next) => {
 }
 
 const getAllUsers = asyncWrapper( async(req, res, next)=>{
-    const Users = await User.find({});
+    const Users = await User.find({}).select([
+      "username", "email", "avatarImage", "_id",
+    ]);
     res.status(200).json({Users})
 })
 module.exports = {register, login, setProfile, getAllUsers}

@@ -1,0 +1,10 @@
+.logoutBtn{
+    @apply flex justify-center items-center;
+    @apply border-none cursor-pointer;
+    @apply p-2 rounded-full;
+    @apply bg-btn-color hover:bg-hover-btn-color;
+    svg {
+        @apply text-lg;
+        color: #ebe7ff;
+    }
+}

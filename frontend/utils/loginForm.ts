@@ -1,4 +1,3 @@
-"use client"
 import axios from "axios";
 import Router  from "next/router";
 import { toast } from "react-toastify";
@@ -14,7 +13,6 @@ const toastOptions = {
 
 export const handleChange = (event:any, values: any, setValues:any) => {
   event.preventDefault();
-  console.log(values);
   setValues({ ...values, [event.target.name]: event.target.value });    
 }
 

@@ -28,6 +28,8 @@ module.exports = {
         'heading-color': '#6f42c1',
         'btn-color': '#4e0eff',
         'hover-btn-color': '#6531f7',
+        'contact':'#080420',
+        'light-bg': '#9a86f3',
       },
       spacing: {
         '128': '32rem',
