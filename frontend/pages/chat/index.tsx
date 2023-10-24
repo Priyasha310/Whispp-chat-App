@@ -68,12 +68,12 @@ const Chat = () => {
       <div className={styles.chatContainer}>
         <div className={styles.container}>
           <Contacts contacts={contacts} currentUser={currentUser} changeChat={handleChatChange} />
-          {/* {currentChat === undefined ? (
+          {currentChat === undefined ? (
             <Welcome />
-          ) : ( */}
+          ) : (
             <ChatContainer currentUser={currentUser}
             currentChat={currentChat}  />
-          {/* )} */}
+          )}
         </div>
       </div>
     )}

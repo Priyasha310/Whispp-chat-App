@@ -10,7 +10,7 @@ const Logout = () => {
     Router.replace("/login");
   }
   return (
-    <div className={styles.logoutBtn}>
+    <div className={styles.logoutBtn} onClick={handleLogout}>
       <BiPowerOff/>
     </div>
   )

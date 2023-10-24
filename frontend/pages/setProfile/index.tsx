@@ -4,9 +4,8 @@ import axios from "axios";
 import Image from "next/image";
 import Router from "next/router";
 import { Buffer } from "buffer";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import styles from './setProfile.module.scss'
 import loader from "@/public/loader.gif";
 import { setProfilePicture } from '@/utils/utlis';
@@ -14,7 +13,7 @@ import { setProfilePicture } from '@/utils/utlis';
 export default function SetAvatar() {
   const api = `https://api.multiavatar.com/4645646`;
   const [avatars, setAvatars] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
   const [selectedAvatar, setSelectedAvatar] = useState<number | null>(null);
 
   useEffect( () => {

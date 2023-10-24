@@ -1,16 +1,19 @@
 import React, {useState, useEffect} from 'react'
 import styles from './contacts.module.scss'
 import Image from 'next/image';
+import { FaEdit } from "react-icons/fa";
 import logo from '@/public/logo.svg'
 import loader from "@/public/loader.gif";
 import { ContactsProps, Contact } from '@/models/models';
+import Link from 'next/link';
 
 const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState<Boolean>(true);
   const [currentUserName, setCurrentUserName] = useState <string|undefined>(undefined);
   const [currentUserImage, setCurrentUserImage] = useState <string|undefined>(undefined);
   const [currentSelected, setCurrentSelected] = useState <number|undefined>(undefined);
+
 
   useEffect(()=>{
     if(currentUser){
@@ -19,7 +22,7 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
     }
     // console.log("username: ", currentUser?.username, "avatar: ", currentUser?.avatarImage);
     setIsLoading(false);
-  },[currentUser])
+  },[contacts, currentUser])
 
   const changeCurrentChat = (index:number, contact:any) => {
     setCurrentSelected(index);
@@ -33,7 +36,7 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
         <Image src={loader} alt="loader" className="loader" width={100} height={100} />
       </div>
       ) : (
-        <>
+      <>
       {currentUserImage && currentUserName && (
         
         <div className={styles.contactContainer}>
@@ -54,11 +57,10 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
                   <div className={`${styles.avatar}`}>
                     <Image width={75} height={75} src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt="avatar"/>
                   </div>
-
-                    <div className={`${styles.username}`}>
-                      <h3>{contact.username}</h3>
-                    </div>
+                  <div className={`${styles.username}`}>
+                    <h3>{contact.username.charAt(0).toUpperCase()+contact.username.slice(1)}</h3>
                   </div>
+                </div>
                 )
               })
             }
@@ -70,10 +72,13 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
                 src={`data:image/svg+xml;base64,${currentUserImage}`} 
                 alt="avatar" width={50} height={60}
               />
+              <div className={`${styles.username}`}>
+                <h2>{currentUserName.charAt(0).toUpperCase()+currentUserName.slice(1)}</h2>
+              </div>
             </div>
-            <div className={`${styles.username}`}>
-              <h2>{currentUserName.charAt(0).toUpperCase()+currentUserName.slice(1)}</h2>
-            </div>
+            <Link className={styles.edit} href='/setProfile'>
+              <FaEdit/>
+            </Link>
           </div>
         </div>
       )}

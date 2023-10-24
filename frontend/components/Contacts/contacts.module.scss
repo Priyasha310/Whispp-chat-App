@@ -13,17 +13,19 @@
         }
     }
     .contacts {
-        @apply flex flex-col items-center gap-3 overflow-auto;
+        @apply flex flex-col items-center gap-2 overflow-auto;
 
         .contact {
             background-color: #ffffff34;
             @apply cursor-pointer;
-            min-height: 5rem;
-            @apply w-90_100 rounded p-1;
-            @apply flex items-center gap-4;
+            min-height: 4rem;
+            @apply w-90_100 rounded;
+            @apply flex items-center gap-0;
             transition: 0.5s ease-in-out;
-            .avatar img {
-                @apply h-12;
+            .avatar{
+                img {
+                    @apply h-12;
+                }
             }
             .username  {
                 @apply text-white;
@@ -36,14 +38,46 @@
 
     .currentUser {
         background-color: #0d0d30;
-        @apply flex justify-center items-center gap-8;
-        .avatar img {
-            @apply h-16;
-            max-inline-size: 100%;
+        @apply p-4;
+        @apply flex justify-between items-center gap-8;
+
+        .avatar {
+            @apply flex flex-row gap-2;    
+            img {
+                @apply h-16;
+                max-inline-size: 100%;
+            }
         }
-        .username h2 {
+        .username {
+            @apply flex justify-center items-center;
             @apply text-white;
         }
+    }
+
+    .edit{
+        @apply relative flex justify-between items-center;
+        @apply border-none cursor-pointer;
+        @apply p-2 rounded-full;
+        @apply bg-btn-color hover:bg-hover-btn-color;
+        svg {
+            @apply text-lg;
+            color: #dfdbf1;
+            @apply hover:text-white;
+        }
+    }
+
+    .edit::before {
+        content: "Reset Profile Picture"; 
+        @apply  bg-black text-white;
+        @apply p-1 rounded-md w-32;
+        @apply absolute bottom-full left-50_100 -translate-x-50_100 opacity-0;
+        @apply pointer-events-none;
+        font-size: 11px;
+        transition: opacity 0.3s;
+    }
+
+    .edit:hover::before {
+        @apply opacity-100;
     }
 
     // @media screen and (min-width: 720px) and (max-width: 1080px) {
