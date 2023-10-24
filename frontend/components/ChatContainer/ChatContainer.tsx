@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import ChatInput from '../ChatInput/ChatInput'
 import Image from 'next/image'
-import styles from '@/components/ChatContainer/chatContainer.module.scss'
-import Logout from '../Logout/Logout'
-import { ChatProps } from '@/models/models'
-import Messages from '../Messages/Messages'
 import axios from 'axios'
-import { sendMessageRoute } from '@/utils/APIRoutes'
+import Logout from '@/components/Logout/Logout'
+import ChatInput from '@/components/ChatInput/ChatInput'
+import { ChatProps } from '@/models/models'
+import styles from '@/components/ChatContainer/chatContainer.module.scss'
+import { getAllMessagesRoute, sendMessageRoute } from '@/utils/APIRoutes'
 
 const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
   
   const [isLoading, setIsLoading] = useState(true);
   const [currentUserName, setCurrentUserName] = useState <string|undefined>(undefined);
   const [currentUserImage, setCurrentUserImage] = useState <string|undefined>(undefined);
-  
-  const handleSendMsg = async (message:string) => {
-    
-    if(currentUser && currentChat){
-      await axios.post(sendMessageRoute, {
-        from: currentUser._id,
-        to: currentChat._id,
-        message: message,
-      })
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async()=>{
+      const response = await axios.post(getAllMessagesRoute, {
+        from: currentUser?._id,
+        to: currentChat?._id,
+      });
+      setMessages(response.data)
     }
-    alert(message);
-  }
-  
+    fetchData();
+  }, [currentChat, currentUser]);
+
   useEffect(()=>{
     if(currentUser){
       setCurrentUserImage(currentUser.avatarImage)
@@ -35,6 +34,16 @@ const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
     setIsLoading(false);
   },[currentUser])
   
+  const handleSendMsg = async (message:string) => {    
+    if(currentUser && currentChat){
+      await axios.post(sendMessageRoute, {
+        from: currentUser._id,
+        to: currentChat._id,
+        message: message,
+      })
+    }
+  }
+    
   return (
     <>{currentChat && (
     <div className={styles.chatContainer}>
@@ -55,7 +64,21 @@ const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
       </div>
 
       <div className={styles.chatMessages}>
-        <Messages/>
+        {
+          messages.map((message: any)=> {
+            return (
+              <>
+                <div className={`${styles.message} ${message.fromSelf ? styles.sent:styles.recieved}`}>
+                  <div className={styles.content}>
+                    <p>
+                      {message.message}
+                    </p>
+                  </div>
+                </div>
+              </>
+            )
+          })
+        }
       </div>
       <ChatInput handleSendMsg={handleSendMsg}/>
     </div>)}
