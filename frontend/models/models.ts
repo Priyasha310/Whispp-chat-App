@@ -32,4 +32,6 @@ export interface ChatProps{
     currentChat: ChatInterface | null;
 
 }
-  
+export interface ChatInputProps {
+    handleSendMsg: (message: string) => void;
+  }

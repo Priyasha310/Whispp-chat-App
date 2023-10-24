@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import ChatInput from '../ChatInput/ChatInput'
 import Image from 'next/image'
-import logo from '@/public/logo.svg'
 import styles from '@/components/ChatContainer/chatContainer.module.scss'
 import Logout from '../Logout/Logout'
-import { CurrentUserInterface, ChatInterface, ChatProps } from '@/models/models'
+import { ChatProps } from '@/models/models'
 import Messages from '../Messages/Messages'
+import axios from 'axios'
+import { sendMessageRoute } from '@/utils/APIRoutes'
 
 const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
   
@@ -14,6 +15,14 @@ const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
   const [currentUserImage, setCurrentUserImage] = useState <string|undefined>(undefined);
   
   const handleSendMsg = async (message:string) => {
+    
+    if(currentUser && currentChat){
+      await axios.post(sendMessageRoute, {
+        from: currentUser._id,
+        to: currentChat._id,
+        message: message,
+      })
+    }
     alert(message);
   }
   
@@ -48,7 +57,7 @@ const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
       <div className={styles.chatMessages}>
         <Messages/>
       </div>
-      <ChatInput />
+      <ChatInput handleSendMsg={handleSendMsg}/>
     </div>)}
     </>
   )

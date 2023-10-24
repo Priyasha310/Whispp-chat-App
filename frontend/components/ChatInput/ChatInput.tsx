@@ -3,8 +3,9 @@ import { BsEmojiSmileFill } from "react-icons/bs";
 import { IoMdSend } from "react-icons/io";
 import Picker from "emoji-picker-react";
 import styles from './input.module.scss'
+import { ChatInputProps } from '@/models/models';
 
-const ChatInput = (handleSendMsg:any) => {
+const ChatInput = ({ handleSendMsg }: ChatInputProps) => {
 
   const[showEmojiPicker, setShowEmojiPicker] = useState<Boolean>(false);
   const[message, setMessage] = useState<string>("");
@@ -12,6 +13,7 @@ const ChatInput = (handleSendMsg:any) => {
   const sendChat = (event: React.FormEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (message.length > 0) {
+      handleSendMsg(message);
       console.log("message sent");
       setMessage("");
     }
@@ -37,7 +39,3 @@ const ChatInput = (handleSendMsg:any) => {
 }
 
 export default ChatInput
-
-function handleSendMsg(msg: string) {
-  throw new Error('Function not implemented.');
-}

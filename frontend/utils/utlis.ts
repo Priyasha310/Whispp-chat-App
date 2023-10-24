@@ -12,7 +12,7 @@ const toastOptions = {
   };
 
 
-export const setProfilePicture = async (event:any, avatars:any, selectedAvatar:any) => {
+export const setProfilePicture = async (event:any, avatars:any, selectedAvatar:any) => {//seems problem setting in local storage
     if (selectedAvatar === undefined) {
         toast.error("Please select an avatar", toastOptions);
     } else {
