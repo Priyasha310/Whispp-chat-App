@@ -19,7 +19,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem('user_data')) {
-      Router.replace("/");
+      Router.replace("/chat");
     }
     setIsLoading(false);
   }, []);
