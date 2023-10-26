@@ -1,7 +1,6 @@
 .contactContainer{
-    display: grid;
+    @apply bg-contact grid overflow-hidden;
     grid-template-rows: 10% 75% 15%;
-    @apply overflow-hidden  bg-contact;
 
     .brand {
         @apply flex justify-center items-center gap-4;
@@ -16,15 +15,15 @@
         @apply flex flex-col items-center gap-2 overflow-auto;
 
         .contact {
-            background-color: #ffffff34;
-            @apply cursor-pointer;
-            min-height: 4rem;
-            @apply w-90_100 rounded;
+            // @apply bg-transparent;
+            @apply bg-[#ffffff34];
+            @apply cursor-pointer rounded;
+            @apply min-h-[4rem] w-90_100;
             @apply flex items-center gap-0;
             transition: 0.5s ease-in-out;
             .avatar{
                 img {
-                    @apply h-12;
+                    @apply h-10;
                 }
             }
             .username  {
@@ -32,19 +31,19 @@
             }
         }
         .selected {
-            background-color: #9a86f3;
+            @apply bg-selected-chat;
         }
     }
 
     .currentUser {
-        background-color: #0d0d30;
-        @apply p-4;
-        @apply flex justify-between items-center gap-8;
+        @apply bg-[#0d0d30];
+        @apply px-4 py-1;
+        @apply flex justify-between items-center;
 
         .avatar {
             @apply flex flex-row gap-2;    
             img {
-                @apply h-16;
+                @apply h-12;
                 max-inline-size: 100%;
             }
         }
@@ -55,7 +54,7 @@
     }
 
     .edit{
-        @apply relative flex justify-between items-center;
+        @apply hidden relative flex justify-between items-center;
         @apply border-none cursor-pointer;
         @apply p-2 rounded-full;
         @apply bg-btn-color hover:bg-hover-btn-color;
@@ -70,7 +69,7 @@
         content: "Reset Profile Picture"; 
         @apply  bg-black text-white;
         @apply p-1 rounded-md w-32;
-        @apply absolute bottom-full left-50_100 -translate-x-50_100 opacity-0;
+        @apply absolute bottom-full left-50_100 -translate-x-60_100 opacity-0;
         @apply pointer-events-none;
         font-size: 11px;
         transition: opacity 0.3s;

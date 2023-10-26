@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react'
 import styles from './contacts.module.scss'
 import Image from 'next/image';
 import { FaEdit } from "react-icons/fa";
-import logo from '@/public/logo.svg'
+import logo from '@/public/logo.png'
 import loader from "@/public/loader.gif";
 import { ContactsProps, Contact } from '@/models/models';
 import Link from 'next/link';
+import Logout from '../Logout/Logout';
 
 const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
 
@@ -41,7 +42,7 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
         
         <div className={styles.contactContainer}>
           <div className={styles.brand}>
-            <Image src={logo} alt='Whispp' width={50} height={50}/> 
+            <Image src={logo} alt='Whispp' width={30} height={40}/> 
             <h3>Whispp</h3>
           </div>
 
@@ -58,8 +59,11 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
                     <Image width={75} height={75} src={`data:image/svg+xml;base64,${contact.avatarImage}`} alt="avatar"/>
                   </div>
                   <div className={`${styles.username}`}>
-                    <h3>{contact.username.charAt(0).toUpperCase()+contact.username.slice(1)}</h3>
+                    <h3>{contact.username}</h3>
                   </div>
+                  {/* <div className="text-[8px] text-light-text w-80_100 pr-2 flex justify-end">
+                    <p>21/10/2023</p>
+                  </div> */}
                 </div>
                 )
               })
@@ -76,9 +80,10 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
                 <h2>{currentUserName.charAt(0).toUpperCase()+currentUserName.slice(1)}</h2>
               </div>
             </div>
-            <Link className={styles.edit} href='/setProfile'>
-              <FaEdit/>
-            </Link>
+            <div className='flex flex-row gap-2'>
+              <Link className={styles.edit} href='/setProfile'><FaEdit/></Link>
+              <Logout/>
+            </div>
           </div>
         </div>
       )}

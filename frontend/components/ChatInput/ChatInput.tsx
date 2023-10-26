@@ -30,7 +30,7 @@ const ChatInput = ({ handleSendMsg }: ChatInputProps) => {
         <input type="text" placeholder='Type your message here...'
           onChange={(e) => setMessage(e.target.value)}
           value={message} />
-        <button className={styles.submit}>
+        <button className={styles.send}>
           <IoMdSend/>
         </button>
       </form>

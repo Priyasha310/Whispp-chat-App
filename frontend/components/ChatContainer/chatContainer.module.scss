@@ -1,8 +1,7 @@
 .chatContainer{
-    @apply text-white;
-    @apply grid overflow-hidden;
+    @apply text-light-text;
+    @apply grid overflow-hidden gap-1;
     grid-template-rows: 10% 80% 10%;
-    gap: 0.1rem;
 
     @media screen and (min-width: 720px) and (max-width: 1080px) {
       grid-template-rows: 15% 70% 15%;
@@ -17,20 +16,20 @@
             @apply h-12;
         }
         .username h3 {
-            @apply text-white;
+            @apply text-light-text;
         }
       }
     }
     .chatMessages {
-      padding: 1rem 2rem;
-      @apply flex flex-col gap-4 overflow-auto;
+      @apply py-4 px-4;
+      @apply flex flex-col gap-2 overflow-auto;
+
       .message {
         @apply flex items-center;
         .content {
           max-width: 40%;
-          overflow-wrap: break-word;
-          @apply p-4 rounded-2xl text-lg;
-          color: #d1d1d1;
+          @apply break-words;
+          @apply py-2 px-4 rounded text-sm text-light-text;
           @media screen and (min-width: 720px) and (max-width: 1080px) {
             max-width: 70%;
           }
@@ -39,13 +38,15 @@
       .sent{
         @apply justify-end;
         .content {
-          background-color: #4f04ff21;
+          @apply bg-hover-btn-color;
+          // background-color: #4f04ffdd;
         }
       }
       .recieved {
         @apply justify-start;
         .content {
-          background-color: #9900ff20;
+          @apply bg-btn-color;
+          // background-color: #9900ff20;
         }
       }
     }

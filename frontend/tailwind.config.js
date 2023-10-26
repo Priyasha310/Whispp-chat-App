@@ -24,7 +24,8 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         'bg-color': '#131324',
-        'light-text': '#f0ecf9',
+        'light-text': '#d1d1d1',
+        'selected-chat':' #9a86f3',
         'heading-color': '#6f42c1',
         'btn-color': '#4e0eff',
         'hover-btn-color': '#6531f7',

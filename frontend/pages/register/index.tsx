@@ -18,7 +18,7 @@ const Register = () => {
 
   useEffect(() => {
     if (localStorage.getItem('user_data')) {
-      Router.replace("/chat");
+      Router.replace("/");
     }
     setIsLoading(false) 
   }, []);

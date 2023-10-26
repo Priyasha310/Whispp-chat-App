@@ -1,24 +1,18 @@
 .chatInput{
-    display: grid;
-  align-items: center;
+  @apply grid items-center;
+  @apply py-0 px-2 bg-[#080420];
   grid-template-columns: 5% 95%;
-  background-color: #080420;
-  padding: 0 2rem;
   @media screen and (min-width: 720px) and (max-width: 1080px) {
     padding: 0 1rem;
     gap: 1rem;
   }
   .buttonContainer {
-    display: flex;
-    align-items: center;
-    color: white;
-    gap: 1rem;
+    @apply flex items-center gap-4 text-white;
+
     .emoji {
-      position: relative;
+      @apply relative pl-2;
       svg {
-        font-size: 1.5rem;
-        color: #ffff00c8;
-        cursor: pointer;
+        @apply text-2xl text-[#ffff00c8] cursor-pointer;
       }
       .emoji-picker-react {
         position: absolute;
@@ -45,47 +39,36 @@
         }
       }
     }
+    
   }
   .inputContainer {
-    width: 100%;
-    border-radius: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+    @apply w-full rounded;
+    @apply flex items-center gap-8;
     background-color: #ffffff34;
     input {
-      width: 90%;
-      height: 60%;
-      background-color: transparent;
-      color: white;
-      border: none;
-      padding-left: 1rem;
-      font-size: 1.2rem;
-
-      &::selection {
-        background-color: #9a86f3;
-      }
-      &:focus {
-        outline: none;
-      }
+      @apply w-full h-full;
+      @apply bg-transparent text-light-text text-lg;
+      @apply border-none pl-4 py-1 pb-0;
     }
-    .submit {
-      padding: 0.3rem 1rem;
-      border-radius: 2rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #9a86f3;
-      border: none;
+
+    input:focus{
+      @apply outline-none
+    }
+
+    .send {
+      @apply w-10 h-10 py-1 px-2 ;
+      @apply rounded-full border-none;
+      @apply flex justify-center items-center;
+      @apply hover:bg-[#9a86f3];
+      transition: ease-in-out .2s;
       @media screen and (min-width: 720px) and (max-width: 1080px) {
         padding: 0.3rem 1rem;
         svg {
-          font-size: 1rem;
+          @apply text-base;
         }
       }
       svg {
-        font-size: 2rem;
-        color: white;
+        @apply text-2xl text-light-text;
       }
     }
   }

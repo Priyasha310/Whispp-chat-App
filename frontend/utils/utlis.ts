@@ -33,7 +33,7 @@ export const setProfilePicture = async (event:any, avatars:any, selectedAvatar:a
             user.isAvatarImageSet = true;
             user.avatarImage = data.image;
             localStorage.setItem("user_data",JSON.stringify(user));
-            Router.replace("/chat");
+            Router.replace("/");
         } else {
             toast.warn("Error setting avatar. Please try again.", toastOptions);
         }

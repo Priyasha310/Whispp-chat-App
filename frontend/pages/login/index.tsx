@@ -1,3 +1,4 @@
+'use client'
 import '@/app/globals.scss'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
@@ -19,7 +20,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem('user_data')) {
-      Router.replace("/chat");
+      Router.replace("/");
     }
     setIsLoading(false);
   }, []);

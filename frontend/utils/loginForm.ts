@@ -47,7 +47,7 @@ export const handleSubmit = async (e:any, values: { username: string; password: 
         'user_data',
         JSON.stringify(data.user)
         );
-        Router.replace("/chat");
+        Router.replace("/");
     }
   };
 }

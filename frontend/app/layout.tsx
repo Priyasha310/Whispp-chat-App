@@ -4,8 +4,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Chat App',
-  description: 'Designed and Developed by Priyasha Parnavi',
+  title: 'Whispp Chat App',
+  description: 'Developed by Priyasha Parnavi',
 }
 
 export default function RootLayout({

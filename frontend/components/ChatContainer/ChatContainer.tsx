@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import axios from 'axios'
-import Logout from '@/components/Logout/Logout'
 import ChatInput from '@/components/ChatInput/ChatInput'
 import { ChatProps } from '@/models/models'
 import styles from '@/components/ChatContainer/chatContainer.module.scss'
@@ -57,10 +56,9 @@ const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
             />
           </div>
           <div className={`${styles.username}`}>
-            <h2>{currentChat.username}</h2>
+            <h2>{currentChat.username.charAt(0).toUpperCase()+currentChat.username.slice(1)}</h2>
           </div>
         </div>
-        <Logout/>
       </div>
 
       <div className={styles.chatMessages}>
