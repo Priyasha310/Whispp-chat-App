@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { handleChange, handleSubmit } from '@/utils/registerForm';
 import loader from "@/public/loader.gif";
-import logo from '../../public/logo.svg'
+import logo from '../../public/logo.png'
 import styles from './register.module.scss'
 
 const Register = () => {  
@@ -33,7 +33,7 @@ const Register = () => {
       <div className={styles.div}>
         <form action="" onSubmit={(event) => handleSubmit(event, values, setValues)}>
           <div className={styles.brand}>
-            <Image src={logo} alt='Whispp' width={100} height={100}/>
+            <Image src={logo} alt='Whispp' width={80} height={60}/>
             <h1>Whispp</h1>
           </div>
           <input type='text' placeholder='Username' name='username' onChange={e=>handleChange(e, values, setValues)}/>
