@@ -30,7 +30,7 @@ const Register = () => {
           <Image src={loader} alt="loader" className="loader" width={100} height={100} />
         </div>
       ) : (
-      <div className={styles.div}>
+      <div className={styles.container}>
         <form action="" onSubmit={(event) => handleSubmit(event, values, setValues)}>
           <div className={styles.brand}>
             <Image src={logo} alt='Whispp' width={80} height={60}/>

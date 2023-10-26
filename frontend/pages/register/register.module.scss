@@ -1,7 +1,7 @@
-.div{
-    @apply min-h-screen max-h-full w-screen p-4;
+.container{
+    @apply min-h-screen max-h-full w-screen px-4;
     @apply flex flex-col justify-center items-center;
-    @apply gap-4;
+    @apply gap-2;
     @apply bg-bg-color;
     .brand {
         @apply flex items-center justify-center;
@@ -15,49 +15,34 @@
     }
 
     form {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        @apply flex flex-col gap-6;
+        @apply rounded-2xl;
+        @apply py-12 px-16;
         // @apply h-128 w-80;
-        background-color: #00000076;
-        border-radius: 1rem;
-        padding: 3rem 4rem;
+        @apply bg-[#00000076];
         @apply shadow-bg-color shadow-lg;
     }
     input {
         background-color: rgb(25, 21, 29);
-        padding: .5rem 1rem;
-        border: 0rem solid #4e0eff;
-        border-radius: 0.4rem;
-        color: white;
-        width: 100%;
-        font-size: 1rem;
+        @apply rounded-md py-2 px-4;
+        @apply text-light-text text-base;
+        @apply w-full;
         &:focus {
+            @apply outline-none;
             border: 0.1rem solid #997af0;
-            outline: none;
         }
     }
     button {
-        background-color: #4e0eff;
-        color: white;
-        padding: 1rem;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        border-radius: 0.4rem;
-        font-size: 1rem;
-        text-transform: uppercase;
-        &:hover {
-        background-color: #6531f7;
-        }
+        @apply bg-btn-color text-light-text text-base font-bold;
+        @apply border-none cursor-pointer uppercase;
+        @apply p-3 border-none rounded-md;
+        @apply hover:bg-hover-btn-color;
     }
     span {
-        color: white;
-        text-transform: uppercase;
+        @apply text-white uppercase;
         a {
-        color: #4e0eff;
-        text-decoration: none;
-        font-weight: bold;
+            @apply text-blue-700 font-bold;
+            text-decoration: none;
         }
     }
 }
