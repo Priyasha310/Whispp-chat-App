@@ -7,6 +7,10 @@ const messageSchema = mongoose.Schema(
                 type: String,
                 required: true,
             },
+            timeSent: {
+                type: Date,
+                default: Date.now,
+            }
         },
         users: Array,
         sender:{

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import axios from 'axios'
+import moment from 'moment'
 import ChatInput from '@/components/ChatInput/ChatInput'
 import { ChatProps } from '@/models/models'
 import styles from '@/components/ChatContainer/chatContainer.module.scss'
@@ -70,6 +71,8 @@ const ChatContainer = ({currentUser, currentChat}:ChatProps) => {
                   <div className={styles.content}>
                     <p>
                       {message.message}
+                      <p className='text-end text-[10px]'>{message.timeSent}</p>
+                      {/* <p className='text-end text-[10px]'>{moment(message.timeSent).fromNow()}</p> */}
                     </p>
                   </div>
                 </div>

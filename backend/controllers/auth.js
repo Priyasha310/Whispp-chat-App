@@ -74,7 +74,7 @@ const setProfile = async (req, res, next) => {
 }
 
 const getAllUsers = asyncWrapper( async(req, res, next)=>{
-    const Users = await User.find({}).select([
+    const Users = await User.find({_id: { $ne: req.params.id }}).select([
       "username", "email", "avatarImage", "_id",
     ]);
     res.status(200).json({Users})

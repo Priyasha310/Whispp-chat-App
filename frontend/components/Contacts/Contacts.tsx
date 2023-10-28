@@ -26,8 +26,18 @@ const Contacts = ({contacts, currentUser, changeChat}:ContactsProps) => {
   },[contacts, currentUser])
 
   const changeCurrentChat = (index:number, contact:any) => {
-    setCurrentSelected(index);
+    
+    console.log("placed top", contacts[index]);
+    const selected = contacts[index];
+    const toRemove = contacts.indexOf(selected);
+    if (toRemove !== -1) {
+      contacts.splice(toRemove, 1);
+    }
+
+    contacts.unshift(selected);
+    
     changeChat(contact);
+    setCurrentSelected(0);
   }
 
   return (
